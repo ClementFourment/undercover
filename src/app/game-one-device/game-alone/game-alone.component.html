@@ -1,0 +1,12 @@
+@if (showGamePartie) {
+    <app-game-partie [word]='words[game().partie - 1]'/>
+}
+<div class="center">
+    <button class="btn blue" (click)="newPartie()" id="partieSuivante">Partie suivante</button>
+</div>
+
+
+<div id="goBackToMenu" class="center">
+    <h2>Tous les mots ont été épuisés...</h2>
+    <button class="btn blue" routerLink="" >Retour au menu principal</button>
+</div>

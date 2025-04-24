@@ -1,0 +1,117 @@
+<button class="btn blue btn-back" (click)="goBack()">
+    <i class="	fa fa-long-arrow-left" style="font-size:36px"></i>
+</button>
+<div id="overlayLeave">
+    <div class="center">
+        <h4>Êtes-vous sûr de vouloir quitter la partie en cours ?</h4>
+        <div>
+            <button class="btn blue" (click)="closeOverlayLeave()">Non</button>
+            <button class="btn blue" routerLink="/game-alone">Oui</button>
+        </div>
+    </div>
+</div>
+@if (activeIndex != null) {
+    <div class="overlay">
+        <button class="btn blue" (click)="closeOverlayAndContinue()">Continuer</button>
+    </div>
+}
+
+
+<div id ="activeElimination">
+    <div class="center">
+        <h4 id="afficheElimination"></h4>
+        <div>
+            <button class="btn blue" (click)="closeOverlay()">Continuer</button>
+        </div>
+    </div>
+</div>
+<div id ="activeMrWhiteGuess">
+    <div class="center">
+        <h4 id="afficheMrWhiteGuess">Vous avez trouvé Mr. White !</h4>
+        <h6>Mr. White tente de trouver le mot :</h6>
+        <input [(ngModel)]="guess" type="text" id="inputMrWhiteGuess" placeholder="Écris ton guess..."/>
+        <div>
+            <button class="btn blue" (click)="guessMrWhiteValider()">Valider</button>
+        </div>
+    </div>
+</div>
+<div id ="activeMrWhiteGuessAlt">
+    <div class="center">
+        <h4 id="afficheMrWhiteGuess">Mr. White a survécu !</h4>
+        <h6>Mr. White tente de trouver le mot :</h6>
+        <input [(ngModel)]="guess" type="text" id="inputMrWhiteGuess" placeholder="Écris ton guess..."/>
+        <div>
+            <button class="btn blue" (click)="guessMrWhiteValiderAlt()">Valider</button>
+        </div>
+    </div>
+</div>
+<div id ="endGame">
+    <div class="center">
+        <h4 id="afficheEndGame"></h4>
+        <div>
+            <button class="btn blue" (click)="closeOverlayEndGame()">Continuer</button>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+<div class="container">
+	<div class="row">
+        <div class="col l8 m8 s12 offset-l2 offset-m2 ">
+            <div class="center">
+                <h1>Undercover</h1>
+            </div>
+            
+            <!-- Selection des cartes -->
+            @if (game().tour == 0 && nbToPick > 0) {
+                <div class="center">
+                    <h4><i>{{joueurs()[playerOrder[this.game().nbJoueur - nbToPick]].name}}</i></h4>
+                    <h5>choisis une carte !</h5>
+                </div>
+                <br><br>
+                <div class="container">
+                    <div class="row">
+                        @for (joueur of joueurs(); track $index) {
+                            <div class="col l4 m4 s4 card-container">
+                                <div class="card blue" id="role{{$index}}" (click)="selectCard($index)" [ngClass]="{ 'active': activeIndex === $index }" >
+                                    <div class="card-content center">
+                                        <p class="secretPick"></p>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    </div>
+                </div>
+            }
+            @if (game().tour > 0) {
+                <div class="center">
+                    <h5>Chaque joueur dit un mot, puis passez au vote !</h5>
+                </div>
+                <br><br>
+                <div class="container">
+                    <div class="row">
+                        @for (joueur of joueurs(); track $index) {
+                            <div class="col l4 m4 s4 card-container">
+                                <input (change)="afficheEliminer()" type="radio" name="selectPlayer" class="selectPlayer" [id]="'input'+$index" [value]="playerRoles[$index].joueur.id">
+                                <label [for]="'input'+$index">
+                                    <div class="card blue" id="role{{$index}}" >
+                                        <div class="card-content center">
+                                            <p class="secretPick">{{playerRoles[$index].joueur.name}}</p>
+                                        </div>
+                                    </div>
+                                </label>
+                            </div>
+                        }
+                    </div>
+                </div>
+                <div class="center" id="vote">
+                    <button class="btn red" id="eliminer" (click)="eliminer()" disabled><b>Eliminer</b></button>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+

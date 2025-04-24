@@ -1,0 +1,53 @@
+<div class="container">
+	<div class="row">
+        <div class="col l8 m8 s12 offset-l2 offset-m2 ">
+            <h2>Selection des joueurs</h2>
+            <form (ngSubmit)="onSubmit()" #joueurForm="ngForm" (change)="checkPlayers()">
+                
+                <label for="nombre">Nombre de joueurs</label>
+                <input type="number" name="nombre" id="nombre"
+                    min="3"
+                    max="9"
+                    step="1"
+                    required
+                    (input)="changeNombreJoueur($event)"
+                    [(ngModel)]="game.nbJoueur" 
+                    #nombre="ngModel"
+                    >
+                    <br>
+                <hr>
+                <br>
+                @if (nombre.invalid && nombre.touched) {
+                    <div class="red-text">
+                        Nombre de joueurs entre 3 et 9.
+                    </div>
+                }
+                @if ((game.nbJoueur > 2 && game.nbJoueur < 10)) {
+                    @for (nb of [].constructor(game.nbJoueur); track $index) {
+                        <label for="name{{$index}}">Nom joueur {{$index+1}}</label>
+                        <input type="text" name="name{{$index}}" id="name{{$index}}"
+                            required
+                            pattern="^[0-9A-Za-zÀ-ÿ\s]{1,50}$"
+                            [(ngModel)]="joueurs[$index].name" 
+                            #nom="ngModel"
+                            (change)="checkDuplicateName($index)"
+                            [ngClass]="{
+                                'ng-invalid': joueurs[$index].duplicate,
+                                'ng-valid': !joueurs[$index].duplicate
+                                }"
+                        >
+                    }
+                }
+                
+                
+                
+                <br><br>
+                <button type="submit" class="waves-effect waves-light btn blue"
+                [disabled]="!joueurForm.form.valid"> 
+                <!-- || hasDuplicateNames -->
+                Démarrer la partie</button>
+            </form>
+        </div>
+        
+    </div>
+</div>
