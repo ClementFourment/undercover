@@ -1,0 +1,63 @@
+<div class="chat">
+    <div class="inactiveChat" 
+        (click)="deployChat()"
+        [ngClass]="{'active': isChatActive}"
+        >Accéder au chat ...</div>
+
+
+
+    <div class="activeChat"
+        [ngClass]="{'active': isChatActive}">
+
+        <div class="chatHeader" (click)="deployChat()">Réduire le chat ...</div>
+        <div class="chatContent">
+
+            <div id="inputChat">
+                
+                <form (ngSubmit)="send()" #chatForm="ngForm">
+                    <input [(ngModel)]="message" placeholder="Écris ton message..." [ngModelOptions]="{ standalone: true }"/>
+                    <button (click)="send()" type="submit"><i class='fa fa-arrow-up'></i></button>
+                </form>
+            </div>
+            <div id="chatMessages">
+                @for (message of messages; track $index) {
+                    @if (message.from.id == game.player.id){
+                        @if ($index > 0 && messages[$index - 1].from.id == message.from.id) {
+                            <div class="message row me">
+                                <p class="message">{{ message.message }}</p>
+                            </div>
+                        }
+                        @else {
+                            <div class="message me">
+                                <p class="message">{{ message.message }}</p>
+                            </div>
+                        }
+                    }
+                    @else {
+                        @if ($index > 0 && messages[$index - 1].from.id == message.from.id) {
+                            <div class="message row">
+                                <p class="message">{{ message.message }}</p>
+                            </div>
+                        }
+                        @else {
+                            <label>{{ message.from.name }}</label> 
+                            <div class="message">
+                                <p class="message">{{ message.message }}</p>
+                            </div>
+                        }
+                        
+                    }
+                }
+            </div>
+        </div>
+
+        
+        
+
+    </div>
+</div>
+
+
+
+
+

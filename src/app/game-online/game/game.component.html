@@ -1,0 +1,19 @@
+@if (room && game.player) {
+    <app-chat />
+    pseudo : {{game.player.name}}
+<br>
+    room : {{ room.idHost}}
+<br>
+    roomIn game : {{ room.isInGame}}
+<br>
+    @for (player of room.players; track $index) {
+        {{player.name}}
+        <br>
+    }
+}
+@else {
+    <div class="center">
+        <p>Cette salle n'existe pas.</p>
+        <button class="btn blue" routerLink="">Retourner au menu</button>
+    </div>
+}

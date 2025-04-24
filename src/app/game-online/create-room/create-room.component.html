@@ -1,0 +1,36 @@
+<button routerLink="" class="btn blue btn-back"><i class="fa fa-long-arrow-left" style="font-size: 36px;"></i></button>
+
+<br><br>
+
+<div class="center">
+    <h1>Création d'un salon</h1>
+</div>
+
+<div class="container">
+	<div class="row">
+        <div class="col l8 m8 s12 offset-l2 offset-m2">
+
+        <form #ngForm="ngForm">
+
+            <label for="pseudo">Pseudo</label>
+            
+            <input  
+                    autofocus
+                    [(ngModel)]="this.pseudo"  
+                    pattern="^[0-9A-Za-zÀ-ÿ\s]{1,50}$"
+                    #pseudo="ngModel"
+                    name="pseudo"
+                    class="input" type="text" placeholder="pseudo..." id="pseudo" (focus)="true" required />
+            <div class="center">
+                <button type="submit" class="btn blue "
+                        [disabled]= "!ngForm.form.valid"
+                        (click)="goToWaitingRoom()"
+                    
+                    >
+                    Créer le salon
+                </button>
+            </div>
+        </form>
+    </div>
+    </div>
+</div>

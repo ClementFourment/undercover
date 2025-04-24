@@ -1,0 +1,71 @@
+<button routerLink="" class="btn blue btn-back"><i class="fa fa-long-arrow-left" style="font-size: 36px;"></i></button>
+
+<br><br>
+
+<div class="center"><h1>Liste des salons</h1></div>
+
+
+
+
+@if (rooms.length > 0) {
+
+    <div class="container">
+        <div class="row">
+            <div class="">
+                <form #ngForm="ngForm">
+                    <label for="pseudo">Pseudo</label>
+                    <input  
+                            autofocus
+                            [(ngModel)]="this.pseudo"  
+                            pattern="^[0-9A-Za-zÀ-ÿ\s]{1,50}$"
+                            #pseudo="ngModel"
+                            name="pseudo"
+                            class="input" type="text" placeholder="pseudo..." id="pseudo" required />
+                </form>
+            </div>
+        </div>
+    </div>
+
+
+    @for (room of rooms; track $index) {
+        <div class="container">
+            <div class="card">
+                <div class="card-content">
+                    <span class="card-title">Salon de {{room.players[0].name}}</span>
+                    <p>Joueurs : {{room.players.length}}/9</p>
+
+                        <div class="card-content">
+                            @for (player of room.players; track $index) {
+                                <li>
+                                    {{ player.name}}
+                                </li>
+                            }
+                        </div>
+                        <div class="card-action">
+                            <button 
+                                class="btn green"
+                                [disabled]= "!ngForm.form.valid || isTooMuchPlayers(room)" 
+                                (click)="goToJoiningRoom(room)"
+                                >Rejoindre</button>
+                                &nbsp;
+                                @if (isTooMuchPlayers(room)) {
+                                    <i style="display: inline;">La salle est pleine.</i>
+                                }
+                        </div>
+                    </div>
+                </div>
+        </div>
+    }
+}
+@else {
+    <br><br><br><br><br><br>
+    <div class="container">
+        <div class="row">
+            <div style="display: flex">
+                <h6>Aucun salon disponible.</h6>&nbsp;&nbsp;&nbsp;&nbsp;
+                <button class="btn green z-depth-3" routerLink="/create-room">Créer un salon</button>
+            </div>
+        </div>
+    </div>
+}
+
