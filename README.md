@@ -1,59 +1,35 @@
-# Undercover
+# 🎭 Undercover - Version Web (Angular + Node.js)
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.2.5.
+Ce projet est une adaptation du jeu **Undercover** en version web, développé avec **Angular** pour le frontend et fonctionnant en parallèle avec un serveur **Node.js** utilisant **Socket.IO** pour la communication en temps réel.
 
-## Development server
+---
 
-To start a local development server, run:
+## 🚀 Fonctionnalités
+
+- Interface web interactive basée sur Angular
+- Rejoint et création de parties en temps réel
+- Attribution aléatoire des rôles : Citoyens, Undercover, M. White
+- Système de vote et de tour intégré
+- Synchronisation des joueurs via WebSockets
+
+---
+
+## 🧩 Architecture
+
+- **Frontend** : Angular
+- **Backend** : Serveur Node.js + Socket.IO (⚠️ non inclus dans ce repo)
+
+---
+
+## 📦 Installation
 
 ```bash
+# Cloner le projet
+git clone https://github.com/ton-utilisateur/nom-du-repo.git
+cd nom-du-repo
+
+# Installer les dépendances Angular
+npm install
+
+# Lancer le serveur Angular
 ng serve
-```
-
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
-
-## Code scaffolding
-
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
-
-```bash
-ng generate component component-name
-```
-
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
-
-```bash
-ng generate --help
-```
-
-## Building
-
-To build the project run:
-
-```bash
-ng build
-```
-
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
-
-## Running unit tests
-
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
-
-```bash
-ng test
-```
-
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
-
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
