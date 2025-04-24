@@ -1,9 +1,9 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
-import { Game } from '../game-online/class/Game';
-import { GameService } from '../game-online/service/game.service';
-import { Room } from '../game-online/class/Room';
-import { Player } from '../game-online/class/Player';
+import { Game } from '../class/Game';
+import { GameService } from '../service/game.service';
+import { Room } from '../class/Room';
+import { Player } from '../class/Player';
 
 @Component({
   selector: 'app-joining-room',

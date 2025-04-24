@@ -5,7 +5,7 @@ import { GameAloneComponent } from './game-one-device/game-alone/game-alone.comp
 import { CreateRoomComponent } from './game-online/create-room/create-room.component';
 import { WaitingRoomComponent } from './game-online/waiting-room/waiting-room.component';
 import { RoomListComponent } from './game-online/room-list/room-list.component';
-import { JoiningRoomComponent } from './joining-room/joining-room.component';
+import { JoiningRoomComponent } from './game-online/joining-room/joining-room.component';
 import { GameComponent } from './game-online/game/game.component';
 
 
