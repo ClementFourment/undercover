@@ -8,7 +8,7 @@ Ce projet est une adaptation du jeu **Undercover** en version web, développé a
 
 - Interface web interactive basée sur Angular
 - Rejoint et création de parties en temps réel
-- Attribution aléatoire des rôles : Citoyens, Undercover, M. White
+- Attribution aléatoire des rôles : Civils, Undercovers, Mr. White
 - Système de vote et de tour intégré
 - Synchronisation des joueurs via WebSockets
 
@@ -25,8 +25,7 @@ Ce projet est une adaptation du jeu **Undercover** en version web, développé a
 
 ```bash
 # Cloner le projet
-git clone https://github.com/ton-utilisateur/nom-du-repo.git
-cd nom-du-repo
+git clone https://github.com/ClementFourment/undercover.git
 
 # Installer les dépendances Angular
 npm install
