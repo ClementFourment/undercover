@@ -1,15 +1,43 @@
 @if (room && game.player) {
     <app-chat />
-    pseudo : {{game.player.name}}
+
+
+    
+    <div class="flex-row">
+        <small>Connecté(e) en tant que <b>{{ game.player.name }}</b></small>
+        <small>Identifiant de la salle : {{ room.idHost }}</small>
+    </div>
+    
+<br><br>
+    
 <br>
-    room : {{ room.idHost}}
-<br>
-    roomIn game : {{ room.isInGame}}
-<br>
-    @for (player of room.players; track $index) {
-        {{player.name}}
+<br><br>
+        
         <br>
-    }
+        <br>
+        <br>
+        <br><br>
+        @if (game.player.card.role && game.player.card.word) {
+
+            <div class="container center">
+                <div class="card" (click)="toggleCardVisibility()" [ngClass]="{flipped: isCardHidden}">
+
+                    <div class="card-edge"></div>
+
+                    <div class="card-face card-front">
+                        <div class="frame">
+                            <div class="symbol">{{ game.player.card.word | titlecase }}</div>
+                        </div>
+                    </div>
+
+                    <div class="card-face card-back">
+                        <div class="pattern"></div>
+                        <div class="shine"></div>
+                    </div>
+                </div>
+            </div>
+            
+        }
 }
 @else {
     <div class="center">

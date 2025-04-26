@@ -3,7 +3,7 @@ export interface WordPairs {
     word2: string;
 }
 
-export const wordS: WordPairs[] = [
+export const words: WordPairs[] = [
 
     { word1: "pomme", word2: "poire" },
     { word1: "pomme", word2: "banane" },

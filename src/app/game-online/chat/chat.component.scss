@@ -9,7 +9,7 @@
     border: rgba(0, 0, 0, 0.239) solid 1px;
     border-bottom: none;
     background-color:  rgba(194, 192, 192, 0.245);
-    animation: shiny infinite 1s ease;
+    
     user-select: none;
     border-top-left-radius: 15px;
     border-top-right-radius: 15px;
@@ -17,11 +17,7 @@
 
 }
 
-@keyframes shiny {
-    // 0% {
-    //     background-color: red;
-    // }
-}
+
 .activeChat {
     transition: all 1s ease;
     display: none;
@@ -131,4 +127,33 @@ p.message {
 
 label {
     margin-left: 10px;
+}
+
+.notified::after {
+    display: block;
+    position: absolute;
+    content: '';
+    margin: 0;
+    padding: 0;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+    animation: notif 1s infinite ease-in-out;
+}
+@keyframes notif {
+    0% {
+        background-color: transparent;
+    }
+    30% {
+        background-color: rgba(62, 255, 78, 0.5);
+    }
+    50% {
+        background-color: rgba(62, 255, 78, 0.5);
+    }
+    100% {
+        background-color: transparent;
+    }
 }

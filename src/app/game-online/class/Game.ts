@@ -2,6 +2,7 @@ import { io, Socket } from 'socket.io-client';
 import { Observable } from 'rxjs';
 import { Player } from './Player';
 import { Room } from './Room';
+import { WordPairs } from '../interface/wordList';
 
 
 export class Game {
@@ -95,9 +96,9 @@ export class Game {
     });
   }
 
-  onStartNewRound(): Observable<Room> {
+  onNewRound(): Observable<Room> {
     return new Observable((observer) => {
-      this.socket.on('startNewRound', (room) => {
+      this.socket.on('newRound', (room) => {
           observer.next(room)
       });
     });
@@ -125,7 +126,19 @@ export class Game {
     });
   }
 
-
+  newRound() {
+    this.socket.emit('newRound');
+  }
+  getRoles(wordsRound: { wordCivil: string; wordUndercover: string; }) {
+    this.socket.emit('getRoles', wordsRound);
+  }
+  onGetRoles(): Observable<Player[]> {
+    return new Observable((observer) => {
+      this.socket.on('getRoles', (players: Player[]) => {
+          observer.next(players)
+      });
+    });
+  }
 
 
 

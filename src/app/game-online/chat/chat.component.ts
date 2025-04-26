@@ -30,6 +30,9 @@ export class ChatComponent implements OnInit, AfterViewChecked {
     this.game.onNewMessage().subscribe(([message, from]) => {
       this.messages.push({message, from})
       this.shouldScroll = true;
+
+      const chat = document.getElementsByClassName('inactiveChat')[0];
+      chat.classList.add('notified')
     });
   }
   ngAfterViewChecked() {
@@ -51,6 +54,8 @@ export class ChatComponent implements OnInit, AfterViewChecked {
 
   deployChat() {
     this.isChatActive = !this.isChatActive;
+    const chat = document.getElementsByClassName('inactiveChat')[0];
+    chat.classList.remove('notified');
   }
   scrollDownChat() {
     const chatMessages = document.getElementById('chatMessages');

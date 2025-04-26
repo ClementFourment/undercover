@@ -28,33 +28,35 @@
 
 
     @for (room of rooms; track $index) {
-        <div class="container">
-            <div class="card">
-                <div class="card-content">
-                    <span class="card-title">Salon de {{room.players[0].name}}</span>
-                    <p>Joueurs : {{room.players.length}}/9</p>
+        @if (!room.isInGame) {
+            <div class="container">
+                <div class="card">
+                    <div class="card-content">
+                        <span class="card-title">Salon de {{room.players[0].name}}</span>
+                        <p>Joueurs : {{room.players.length}}/9</p>
 
-                        <div class="card-content">
-                            @for (player of room.players; track $index) {
-                                <li>
-                                    {{ player.name}}
-                                </li>
-                            }
-                        </div>
-                        <div class="card-action">
-                            <button 
-                                class="btn green"
-                                [disabled]= "!ngForm.form.valid || isTooMuchPlayers(room)" 
-                                (click)="goToJoiningRoom(room)"
-                                >Rejoindre</button>
-                                &nbsp;
-                                @if (isTooMuchPlayers(room)) {
-                                    <i style="display: inline;">La salle est pleine.</i>
+                            <div class="card-content">
+                                @for (player of room.players; track $index) {
+                                    <li>
+                                        {{ player.name}}
+                                    </li>
                                 }
+                            </div>
+                            <div class="card-action">
+                                <button 
+                                    class="btn green"
+                                    [disabled]= "!ngForm.form.valid || isTooMuchPlayers(room)" 
+                                    (click)="goToJoiningRoom(room)"
+                                    >Rejoindre</button>
+                                    &nbsp;
+                                    @if (isTooMuchPlayers(room)) {
+                                        <i style="display: inline;">La salle est pleine.</i>
+                                    }
+                            </div>
                         </div>
                     </div>
-                </div>
-        </div>
+            </div>
+        }
     }
 }
 @else {

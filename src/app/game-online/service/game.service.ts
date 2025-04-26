@@ -9,9 +9,11 @@ import { Game } from '../class/Game';
 
 export class GameService {
 
-  socket: Socket = io('https://706c-2a04-cec2-b-a31d-7937-4964-c346-994e.ngrok-free.app', {
+  socket: Socket = io('http://localhost:3000', {
     transports: ['websocket'], 
   });
+
+  
   
   game = signal(new Game(this.socket));
     
